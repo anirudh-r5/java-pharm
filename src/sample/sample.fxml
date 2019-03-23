@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="868.0" prefWidth="1354.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+    <children>
+        <Text layoutX="102.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AGE:" wrappingWidth="43.13671875" AnchorPane.leftAnchor="102.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="102.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PH. NO:" AnchorPane.leftAnchor="102.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="105.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NAME:" AnchorPane.leftAnchor="102.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <TextField layoutX="174.0" layoutY="168.0" />
+        <TextField layoutX="175.0" layoutY="214.0" />
+        <TextField layoutX="175.0" layoutY="254.0" />
+        <Text layoutX="854.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WEIGHT:" AnchorPane.rightAnchor="423.14453125" AnchorPane.topAnchor="166.41796875">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="855.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GENDER:" AnchorPane.rightAnchor="419.76171875" AnchorPane.topAnchor="204.41796875">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <TextField layoutX="964.0" layoutY="168.0" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="168.0" />
+        <RadioButton layoutX="1145.0" layoutY="210.0" mnemonicParsing="false" text="OTHERS" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="210.0" />
+        <RadioButton layoutX="1049.0" layoutY="210.0" mnemonicParsing="false" text="FEMALE" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="210.0" />
+        <RadioButton layoutX="964.0" layoutY="210.0" mnemonicParsing="false" text="MALE" AnchorPane.rightAnchor="338.0" AnchorPane.topAnchor="210.0" />
+        <Text layoutX="102.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM:" AnchorPane.leftAnchor="102.0">
+            <font>
+                <Font name="SansSerif Regular" size="25.0" />
+            </font>
+        </Text>
+        <TextField layoutX="249.0" layoutY="364.0" promptText="Item ID" />
+        <Button layoutX="467.0" layoutY="389.0" mnemonicParsing="false" text="Add" />
+        <TextField layoutX="249.0" layoutY="412.0" promptText="Quantity" />
+        <ScrollPane layoutX="102.0" layoutY="480.0" prefHeight="200.0" prefWidth="825.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="427.0">
+            <content>
+                <TableView prefHeight="200.0" prefWidth="807.0">
+                    <columns>
+                        <TableColumn prefWidth="48.0" text="Sl. No." />
+                        <TableColumn prefWidth="102.0" text="Item ID" />
+                        <TableColumn prefWidth="348.0" text="Item Name" />
+                        <TableColumn prefWidth="60.0" text="Quantity" />
+                        <TableColumn prefWidth="116.0" text="Price" />
+                        <TableColumn prefWidth="132.0" text="Amount" />
+                    </columns>
+                </TableView>
+            </content>
+        </ScrollPane>
+        <Text layoutX="549.0" layoutY="721.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TAXES:" AnchorPane.bottomAnchor="142.76171875">
+            <font>
+                <Font name="SansSerif Regular" size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="549.0" layoutY="755.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL AMT.:" AnchorPane.bottomAnchor="108.76171875">
+            <font>
+                <Font name="SansSerif Regular" size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="688.0" layoutY="731.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " AnchorPane.bottomAnchor="143.41796875">
+            <font>
+                <Font name="SansSerif Regular" size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="691.0" layoutY="756.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " AnchorPane.bottomAnchor="108.0">
+            <font>
+                <Font name="SansSerif Regular" size="20.0" />
+            </font>
+        </Text>
+        <Text boundsType="LOGICAL_VERTICAL_CENTER" layoutX="388.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BILLING" textAlignment="CENTER" wrappingWidth="603.314453125" x="10.0" y="20.0">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>
