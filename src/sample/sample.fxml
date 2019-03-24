@@ -15,6 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.collections.FXCollections?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768" minWidth="1024" prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <GridPane layoutX="-7.0" layoutY="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="1307.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="108.0">
@@ -121,14 +122,14 @@
                         </Text>
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
                             <children>
-                                <TextField promptText="Item ID" fx:id="IDfield" />
-                                <TextField promptText="Quantity" fx:id="QTYfield"/>
+                                <TextField promptText="Item ID" fx:id="ID" />
+                                <TextField promptText="Quantity" fx:id="QTY"/>
                             </children>
                             <padding>
                                 <Insets top="5.0" />
                             </padding>
                         </VBox>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" text="ADD" onAction="#printOut">
+                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" text="ADD" onAction="#reader">
                             <HBox.margin>
                                 <Insets left="10.0" top="25.0" />
                             </HBox.margin>
@@ -148,15 +149,20 @@
                 <TableView prefHeight="308.0" prefWidth="1247.0">
                     <columns>
                         <TableColumn prefWidth="15.0" text="Sl. No." />
-                        <TableColumn prefWidth="438.0" text="Item ID" fx:id="IDcol"/>
+                        <TableColumn prefWidth="438.0" text="Item ID"/>
                         <TableColumn prefWidth="464.0" text="Item Name" />
                         <TableColumn prefWidth="126.0" text="Price" />
-                        <TableColumn minWidth="0.0" prefWidth="92.0" text="Quantity" fx:id="QTYcol"/>
+                        <TableColumn minWidth="0.0" prefWidth="92.0" text="Quantity"/>
                         <TableColumn minWidth="0.0" prefWidth="207.0" text="Amount" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+
+                        </FXCollections>
+                    </items>
                 </TableView>
                 <HBox prefHeight="100.0" prefWidth="200.0">
                     <children>
