@@ -3,97 +3,218 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="868.0" prefWidth="1354.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <opaqueInsets>
-        <Insets />
-    </opaqueInsets>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768" minWidth="1024" prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <Text layoutX="102.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AGE:" wrappingWidth="43.13671875" AnchorPane.leftAnchor="102.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Text>
-        <Text layoutX="102.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PH. NO:" AnchorPane.leftAnchor="102.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Text>
-        <Text layoutX="105.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NAME:" AnchorPane.leftAnchor="102.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Text>
-        <TextField layoutX="174.0" layoutY="168.0" />
-        <TextField layoutX="175.0" layoutY="214.0" />
-        <TextField layoutX="175.0" layoutY="254.0" />
-        <Text layoutX="854.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WEIGHT:" AnchorPane.rightAnchor="423.14453125" AnchorPane.topAnchor="166.41796875">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Text>
-        <Text layoutX="855.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GENDER:" AnchorPane.rightAnchor="419.76171875" AnchorPane.topAnchor="204.41796875">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Text>
-        <TextField layoutX="964.0" layoutY="168.0" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="168.0" />
-        <RadioButton layoutX="1145.0" layoutY="210.0" mnemonicParsing="false" text="OTHERS" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="210.0" />
-        <RadioButton layoutX="1049.0" layoutY="210.0" mnemonicParsing="false" text="FEMALE" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="210.0" />
-        <RadioButton layoutX="964.0" layoutY="210.0" mnemonicParsing="false" text="MALE" AnchorPane.rightAnchor="338.0" AnchorPane.topAnchor="210.0" />
-        <Text layoutX="102.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM:" AnchorPane.leftAnchor="102.0">
-            <font>
-                <Font name="SansSerif Regular" size="25.0" />
-            </font>
-        </Text>
-        <TextField layoutX="249.0" layoutY="364.0" promptText="Item ID" />
-        <Button layoutX="467.0" layoutY="389.0" mnemonicParsing="false" text="Add" />
-        <TextField layoutX="249.0" layoutY="412.0" promptText="Quantity" />
-        <ScrollPane layoutX="102.0" layoutY="480.0" prefHeight="200.0" prefWidth="825.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="427.0">
-            <content>
-                <TableView prefHeight="200.0" prefWidth="807.0">
+        <GridPane layoutX="-7.0" layoutY="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="1307.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="108.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="327.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="327.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="542.0" minHeight="10.0" prefHeight="132.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <HBox prefHeight="115.0" prefWidth="520.0">
+                    <children>
+                        <VBox prefHeight="133.0" prefWidth="40.0" spacing="10.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NAME:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PH. NO:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AGE:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                            <padding>
+                                <Insets right="5.0" />
+                            </padding>
+                        </VBox>
+                        <VBox prefHeight="272.0" prefWidth="299.0" spacing="15.0">
+                            <children>
+                                <TextField />
+                                <TextField />
+                                <TextField />
+                            </children>
+                            <padding>
+                                <Insets left="20.0" right="10.0" top="2.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                </HBox>
+                <HBox prefHeight="164.0" prefWidth="641.0" GridPane.columnIndex="1">
+                    <children>
+                        <VBox prefHeight="133.0" prefWidth="47.0" spacing="10.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="WEIGHT:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GENDER:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                            <padding>
+                                <Insets right="5.0" />
+                            </padding>
+                        </VBox>
+                        <VBox prefHeight="133.0" prefWidth="240.0" spacing="15.0">
+                            <padding>
+                                <Insets left="20.0" right="10.0" top="2.0" />
+                            </padding>
+                            <children>
+                                <TextField promptText="in KG" />
+                                <HBox prefHeight="91.0" prefWidth="296.0" spacing="15.0">
+                                    <children>
+                                        <RadioButton mnemonicParsing="false" text="MALE" />
+                                        <RadioButton mnemonicParsing="false" text="FEMALE" />
+                                        <RadioButton mnemonicParsing="false" text="OTHER" />
+                                    </children>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets right="20.0" />
+                    </padding>
+                </HBox>
+                <HBox prefHeight="343.0" prefWidth="520.0" GridPane.rowIndex="2">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM:" wrappingWidth="81.29833984375" >
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Text>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                            <children>
+                                <TextField promptText="Item ID" fx:id="IDfield" />
+                                <TextField promptText="Quantity" fx:id="QTYfield"/>
+                            </children>
+                            <padding>
+                                <Insets top="5.0" />
+                            </padding>
+                        </VBox>
+                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" text="ADD" onAction="#printOut">
+                            <HBox.margin>
+                                <Insets left="10.0" top="25.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <GridPane.margin>
+                        <Insets top="10.0" />
+                    </GridPane.margin>
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </GridPane>
+        <VBox layoutX="14.0" layoutY="416.0" prefHeight="308.0" prefWidth="1267.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="416.0">
+            <children>
+                <TableView prefHeight="308.0" prefWidth="1247.0">
                     <columns>
-                        <TableColumn prefWidth="48.0" text="Sl. No." />
-                        <TableColumn prefWidth="102.0" text="Item ID" />
-                        <TableColumn prefWidth="348.0" text="Item Name" />
-                        <TableColumn prefWidth="60.0" text="Quantity" />
-                        <TableColumn prefWidth="116.0" text="Price" />
-                        <TableColumn prefWidth="132.0" text="Amount" />
+                        <TableColumn prefWidth="15.0" text="Sl. No." />
+                        <TableColumn prefWidth="438.0" text="Item ID" fx:id="IDcol"/>
+                        <TableColumn prefWidth="464.0" text="Item Name" />
+                        <TableColumn prefWidth="126.0" text="Price" />
+                        <TableColumn minWidth="0.0" prefWidth="92.0" text="Quantity" fx:id="QTYcol"/>
+                        <TableColumn minWidth="0.0" prefWidth="207.0" text="Amount" />
                     </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
                 </TableView>
-            </content>
-        </ScrollPane>
-        <Text layoutX="549.0" layoutY="721.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TAXES:" AnchorPane.bottomAnchor="142.76171875">
-            <font>
-                <Font name="SansSerif Regular" size="20.0" />
-            </font>
-        </Text>
-        <Text layoutX="549.0" layoutY="755.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL AMT.:" AnchorPane.bottomAnchor="108.76171875">
-            <font>
-                <Font name="SansSerif Regular" size="20.0" />
-            </font>
-        </Text>
-        <Text layoutX="688.0" layoutY="731.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " AnchorPane.bottomAnchor="143.41796875">
-            <font>
-                <Font name="SansSerif Regular" size="20.0" />
-            </font>
-        </Text>
-        <Text layoutX="691.0" layoutY="756.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " AnchorPane.bottomAnchor="108.0">
-            <font>
-                <Font name="SansSerif Regular" size="20.0" />
-            </font>
-        </Text>
-        <Text boundsType="LOGICAL_VERTICAL_CENTER" layoutX="388.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BILLING" textAlignment="CENTER" wrappingWidth="603.314453125" x="10.0" y="20.0">
-            <font>
-                <Font size="36.0" />
-            </font>
-        </Text>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TAXES:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL AMOUNT:">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                            <padding>
+                                <Insets top="5.0" />
+                            </padding>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" top="5.0" />
+                            </padding>
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="500">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1500">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Submit" onAction="#printOut"/>
+                        <Button mnemonicParsing="false" text="Reset" />
+                     </children>
+                  </HBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+      <HBox alignment="CENTER" layoutX="84.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="616.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BILLING" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="25.0" />
+                    </font>
+                </Text>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>
