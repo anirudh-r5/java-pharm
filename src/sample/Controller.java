@@ -2,7 +2,7 @@ package sample;
 
 import java.sql.*;
 
-import javafx.collections.ObservableArray;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -15,7 +17,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.collections.FXCollections?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768" minWidth="1024" prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <GridPane layoutX="-7.0" layoutY="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="1307.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="108.0">
@@ -112,7 +113,7 @@
                 </HBox>
                 <HBox prefHeight="343.0" prefWidth="520.0" GridPane.rowIndex="2">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM:" wrappingWidth="81.29833984375" >
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM:" wrappingWidth="81.29833984375">
                             <HBox.margin>
                                 <Insets right="10.0" />
                             </HBox.margin>
@@ -122,14 +123,14 @@
                         </Text>
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
                             <children>
-                                <TextField promptText="Item ID" fx:id="ID" />
-                                <TextField promptText="Quantity" fx:id="QTY"/>
+                                <TextField fx:id="ID" promptText="Item ID" />
+                                <TextField fx:id="QTY" promptText="Quantity" />
                             </children>
                             <padding>
                                 <Insets top="5.0" />
                             </padding>
                         </VBox>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" text="ADD" onAction="#reader">
+                        <Button mnemonicParsing="false" onAction="#reader" prefHeight="34.0" prefWidth="85.0" text="ADD">
                             <HBox.margin>
                                 <Insets left="10.0" top="25.0" />
                             </HBox.margin>
@@ -149,10 +150,10 @@
                 <TableView prefHeight="308.0" prefWidth="1247.0">
                     <columns>
                         <TableColumn prefWidth="15.0" text="Sl. No." />
-                        <TableColumn prefWidth="438.0" text="Item ID"/>
+                        <TableColumn prefWidth="438.0" text="Item ID" />
                         <TableColumn prefWidth="464.0" text="Item Name" />
                         <TableColumn prefWidth="126.0" text="Price" />
-                        <TableColumn minWidth="0.0" prefWidth="92.0" text="Quantity"/>
+                        <TableColumn minWidth="0.0" prefWidth="92.0" text="Quantity" />
                         <TableColumn minWidth="0.0" prefWidth="207.0" text="Amount" />
                     </columns>
                     <columnResizePolicy>
@@ -164,6 +165,11 @@
                         </FXCollections>
                     </items>
                 </TableView>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Separator>
                 <HBox prefHeight="100.0" prefWidth="200.0">
                     <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
@@ -203,14 +209,20 @@
                                 </Text>
                             </children>
                         </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Submit" onAction="#printOut"/>
+                        <Button mnemonicParsing="false" onAction="#printOut" text="Submit" />
                         <Button mnemonicParsing="false" text="Reset" />
                      </children>
                   </HBox>
                     </children>
                 </HBox>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Separator>
             </children>
         </VBox>
       <HBox alignment="CENTER" layoutX="84.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="616.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
