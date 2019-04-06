@@ -5,10 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 import java.sql.*;
 
 public class Controller {
+    @FXML
+    Text taxField, amtField;
     @FXML
     TableView colOrd;
     @FXML
@@ -16,14 +19,18 @@ public class Controller {
     @FXML
     TextField ID, QTY, name, wt, age, phone;
     @FXML
+    ToggleGroup Toggle1;
+    @FXML
     RadioButton genM, genF, genO;
-    Connection conn = null;
-    ObservableList<tabData> list = FXCollections.observableArrayList();
+    private Connection conn = null;
+    private ObservableList<tabData> list = FXCollections.observableArrayList();
+    private static int ordTrack=0;
+
 
     public void initialize() {
         System.out.println("UI Controller working!!!");
-        connect();
-//        System.out.println("\nSl\t\tID\t\tName\t\tPrice\t\tQty\t\tAmt\nNo.\n");
+        if(conn==null)
+            connect();
     }
 
     @FXML
@@ -55,8 +62,10 @@ public class Controller {
             list.add(td);
             colOrd.setItems(list);
             colOrd.setVisible(true);
-//            System.out.println(tabData.slTrack + "\t\t" + td.getItemID() + "\t\t" + td.getName() + "\t\t" +
-//                    td.getPrice() + "\t\t" + td.getQty() + "\t\t" + td.getAmt() + "\n");
+            double tmp = Double.parseDouble(taxField.getText()) + (0.05 * td.getAmt());
+            taxField.setText(tmp + "");
+            tmp = tmp + td.getAmt() + Double.parseDouble(amtField.getText());
+            amtField.setText(tmp + "");
         }
     }
 
@@ -72,8 +81,6 @@ public class Controller {
 
     @FXML
     private void reader() {
-//        System.out.println(this.toString());
-//        if(ke.getCode() == KeyCode.ENTER )
         query(Integer.parseInt(ID.getText()), Integer.parseInt(QTY.getText()));
     }
 
@@ -101,5 +108,48 @@ public class Controller {
 
     @FXML
     private void allSubmit() {
+        String sql="INSERT INTO orders VALUES(?,?,?,?,?,?,?,?)";
+        try(PreparedStatement pstmt=conn.prepareStatement(sql)){
+            for(int i=1;i<=tabData.slTrack;i++){
+                pstmt.setInt(1,ordTrack);
+                pstmt.setString(2,name.getText());
+                pstmt.setInt(3,Integer.parseInt(age.getText()));
+                pstmt.setString(4,phone.getText());
+                pstmt.setInt(5,Integer.parseInt(wt.getText()));
+                if(Toggle1.getSelectedToggle()==genM)
+                    pstmt.setString(6,"Male");
+                else if(Toggle1.getSelectedToggle()==genF)
+                    pstmt.setString(6,"Female");
+                else
+                    pstmt.setString(6,"Other");
+                pstmt.setInt(7, (Integer)colID.getCellData(i-1));
+                pstmt.setInt(8, (Integer)colQty.getCellData(i-1));
+                pstmt.executeUpdate();
+            }
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Order Complete");
+            alert.setHeaderText(null);
+            alert.setContentText("Order placed!");
+            alert.show();
+            ordTrack++;
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+
+    @FXML
+    private void allReset(){
+        colOrd.getItems().clear();
+        ID.setText(null);
+        QTY.setText(null);
+        name.setText(null);
+        wt.setText(null);
+        age.setText(null);
+        phone.setText(null);
+        taxField.setText("0");
+        amtField.setText("0");
+        RadioButton tmp=(RadioButton)Toggle1.getSelectedToggle();
+        tmp.setSelected(false);
     }
 }
