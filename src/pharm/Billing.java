@@ -1,4 +1,7 @@
-package sample;
+package pharm;
+
+/* TODO - Add date to order section */
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +12,7 @@ import javafx.scene.text.Text;
 
 import java.sql.*;
 
-public class Controller {
+public class Billing {
     @FXML
     Text taxField, amtField;
     @FXML
@@ -24,16 +27,58 @@ public class Controller {
     RadioButton genM, genF, genO;
     private Connection conn = null;
     private ObservableList<tabData> list = FXCollections.observableArrayList();
-    private static int ordTrack=0;
+    private static int ordTrack = 0;
 
 
     public void initialize() {
-        System.out.println("UI Controller working!!!");
-        if(conn==null)
+        if (conn == null)
             connect();
+        try {
+            String sql = "SELECT max(ID) FROM orders";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs;
+            rs = pstmt.executeQuery();
+            ordTrack = rs.getInt(1) + 1;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void connect() {
+        String url = "jdbc:sqlite:C:/sqlite/test.db";
+        try {
+            conn = DriverManager.getConnection(url);
+            System.out.println("Connected to DB");
+        } catch (SQLException s) {
+            System.out.println(s.getMessage());
+        }
     }
 
     @FXML
+    private void reader() {
+        query(Integer.parseInt(ID.getText()), Integer.parseInt(QTY.getText()));
+    }
+
+    @FXML
+    private void query(int i, int q) {
+        String sql = "SELECT ID, name, price, qty FROM stocks where ID = ?";
+        tabData td = new tabData();
+        ResultSet rs;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, i);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                td.setSl(tabData.slTrack++);
+                td.setItemID(rs.getInt("ID"));
+                td.setName(rs.getString("name"));
+                td.setPrice(rs.getInt("price"));
+                td.setQty(rs.getInt("qty"));
+            }
+            printOut(td, q);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     private void printOut(tabData td, int q) {
         if (td.getName() == null) {
             tabData.slTrack--;
@@ -68,62 +113,31 @@ public class Controller {
             amtField.setText(tmp + "");
         }
     }
-
-    private void connect() {
-        String url = "jdbc:sqlite:C:/sqlite/test.db";
-        try {
-            conn = DriverManager.getConnection(url);
-            System.out.println("Connected to DB");
-        } catch (SQLException s) {
-            System.out.println(s.getMessage());
-        }
-    }
-
-    @FXML
-    private void reader() {
-        query(Integer.parseInt(ID.getText()), Integer.parseInt(QTY.getText()));
-    }
-
-    @FXML
-    private void query(int i, int q) {
-        String sql = "SELECT ID, name, price, qty FROM stocks where ID = ?";
-        tabData td = new tabData();
-        ResultSet rs = null;
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, i);
-            rs = pstmt.executeQuery();
-            while (rs.next()) {
-                td.setSl(tabData.slTrack++);
-                td.setItemID(rs.getInt("ID"));
-                td.setName(rs.getString("name"));
-                td.setPrice(rs.getInt("price"));
-                td.setQty(rs.getInt("qty"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            printOut(td, q);
-        }
-    }
-
     @FXML
     private void allSubmit() {
-        String sql="INSERT INTO orders VALUES(?,?,?,?,?,?,?,?)";
-        try(PreparedStatement pstmt=conn.prepareStatement(sql)){
-            for(int i=1;i<=tabData.slTrack;i++){
-                pstmt.setInt(1,ordTrack);
-                pstmt.setString(2,name.getText());
-                pstmt.setInt(3,Integer.parseInt(age.getText()));
-                pstmt.setString(4,phone.getText());
-                pstmt.setInt(5,Integer.parseInt(wt.getText()));
-                if(Toggle1.getSelectedToggle()==genM)
-                    pstmt.setString(6,"Male");
-                else if(Toggle1.getSelectedToggle()==genF)
-                    pstmt.setString(6,"Female");
+        String sql1 = "INSERT INTO orders VALUES(?,?,?,?,?,?,?,?)";
+        String sql2 = "UPDATE stocks SET qty=qty-? WHERE ID=?";
+        PreparedStatement pstmt;
+        try {
+            for (int i = 1; i <= tabData.slTrack; i++) {
+                pstmt = conn.prepareStatement(sql1);
+                pstmt.setInt(1, ordTrack);
+                pstmt.setString(2, name.getText());
+                pstmt.setInt(3, Integer.parseInt(age.getText()));
+                pstmt.setString(4, phone.getText());
+                pstmt.setInt(5, Integer.parseInt(wt.getText()));
+                if (Toggle1.getSelectedToggle() == genM)
+                    pstmt.setString(6, "Male");
+                else if (Toggle1.getSelectedToggle() == genF)
+                    pstmt.setString(6, "Female");
                 else
-                    pstmt.setString(6,"Other");
-                pstmt.setInt(7, (Integer)colID.getCellData(i-1));
-                pstmt.setInt(8, (Integer)colQty.getCellData(i-1));
+                    pstmt.setString(6, "Other");
+                pstmt.setInt(7, (Integer) colID.getCellData(i - 1));
+                pstmt.setInt(8, (Integer) colQty.getCellData(i - 1));
+                pstmt.executeUpdate();
+                pstmt = conn.prepareStatement(sql2);
+                pstmt.setInt(1, (Integer) colQty.getCellData(i - 1));
+                pstmt.setInt(2, (Integer) colID.getCellData(i - 1));
                 pstmt.executeUpdate();
             }
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -132,14 +146,15 @@ public class Controller {
             alert.setContentText("Order placed!");
             alert.show();
             ordTrack++;
-        }
-        catch(SQLException e){
-            System.out.println(e);
+            tabData.slTrack = 1;
+            allReset();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 
     @FXML
-    private void allReset(){
+    private void allReset() {
         colOrd.getItems().clear();
         ID.setText(null);
         QTY.setText(null);
@@ -149,7 +164,7 @@ public class Controller {
         phone.setText(null);
         taxField.setText("0");
         amtField.setText("0");
-        RadioButton tmp=(RadioButton)Toggle1.getSelectedToggle();
+        RadioButton tmp = (RadioButton) Toggle1.getSelectedToggle();
         tmp.setSelected(false);
     }
 }
