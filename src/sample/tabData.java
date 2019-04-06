@@ -1,62 +1,60 @@
 package sample;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
-class tabData{
-    SimpleIntegerProperty sl=new SimpleIntegerProperty();
-    SimpleIntegerProperty price=new SimpleIntegerProperty();
-    SimpleIntegerProperty qty=new SimpleIntegerProperty();
-    SimpleIntegerProperty amt=new SimpleIntegerProperty();
-    SimpleIntegerProperty itemID = new SimpleIntegerProperty();
-    SimpleStringProperty name= new SimpleStringProperty();
+public class tabData {
+    static int slTrack = 0;
+    private int sl;
+    private int price;
+    private int qty;
+    private int amt;
+    private int itemID;
+    private String name = null;
 
     public int getSl() {
-        return sl.get();
-    }
-
-    public int getPrice() {
-        return price.get();
-    }
-
-    public int getQty() {
-        return qty.get();
-    }
-
-    public int getAmt() {
-        return amt.get();
-    }
-
-    public int getItemID() {
-        return itemID.get();
-    }
-
-    public String getName() {
-        return name.get();
+        return sl;
     }
 
     public void setSl(int sl) {
-        this.sl.set(sl);
+        this.sl = sl;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public void setPrice(int price) {
-        this.price.set(price);
+        this.price = price;
+    }
+
+    public int getQty() {
+        return qty;
     }
 
     public void setQty(int qty) {
-        this.qty.set(qty);
+        this.qty = qty;
+    }
+
+    public int getAmt() {
+        return amt;
     }
 
     public void setAmt(int amt) {
-        this.amt.set(amt);
+        this.amt = amt;
+    }
+
+    public int getItemID() {
+        return itemID;
     }
 
     public void setItemID(int itemID) {
-        this.itemID.set(itemID);
+        this.itemID = itemID;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
-        this.name.set(name);
+        this.name = name;
     }
 }
 
