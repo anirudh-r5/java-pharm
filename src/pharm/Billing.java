@@ -14,17 +14,17 @@ import java.sql.*;
 
 public class Billing {
     @FXML
-    Text taxField, amtField;
+    private Text taxField, amtField;
     @FXML
-    TableView colOrd;
+    private TableView colOrd;
     @FXML
-    TableColumn colSl, colID, colName, colPrice, colQty, colAmt;
+    private TableColumn colSl, colID, colName, colPrice, colQty, colAmt;
     @FXML
-    TextField ID, QTY, name, wt, age, phone;
+    private TextField ID, QTY, name, wt, age, phone;
     @FXML
-    ToggleGroup Toggle1;
+    private ToggleGroup Toggle1;
     @FXML
-    RadioButton genM, genF, genO;
+    private RadioButton genM, genF, genO;
     private Connection conn = null;
     private ObservableList<tabData> list = FXCollections.observableArrayList();
     private static int ordTrack = 0;
@@ -36,12 +36,17 @@ public class Billing {
         try {
             String sql = "SELECT max(ID) FROM orders";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs;
-            rs = pstmt.executeQuery();
+            ResultSet rs= pstmt.executeQuery();
             ordTrack = rs.getInt(1) + 1;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        colSl.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Sl"));
+        colID.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("ItemID"));
+        colQty.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Qty"));
+        colAmt.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Amt"));
+        colPrice.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Price"));
+        colName.setCellValueFactory(new PropertyValueFactory<tabData, String>("Name"));
     }
 
     private void connect() {
@@ -98,12 +103,6 @@ public class Billing {
             td.setQty(q);
             td.setAmt(td.getQty() * td.getPrice());
             td.setSl(tabData.slTrack);
-            colSl.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Sl"));
-            colID.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("ItemID"));
-            colQty.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Qty"));
-            colAmt.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Amt"));
-            colPrice.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Price"));
-            colName.setCellValueFactory(new PropertyValueFactory<tabData, String>("Name"));
             list.add(td);
             colOrd.setItems(list);
             colOrd.setVisible(true);
@@ -146,7 +145,6 @@ public class Billing {
             alert.setContentText("Order placed!");
             alert.show();
             ordTrack++;
-            tabData.slTrack = 1;
             allReset();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -166,5 +164,6 @@ public class Billing {
         amtField.setText("0");
         RadioButton tmp = (RadioButton) Toggle1.getSelectedToggle();
         tmp.setSelected(false);
+        tabData.slTrack = 1;
     }
 }
