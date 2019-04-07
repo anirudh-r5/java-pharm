@@ -1,4 +1,4 @@
-package sample;
+package pharm;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("orders.fxml"));
         primaryStage.setTitle("Billing");
         primaryStage.setScene(new Scene(root));
         primaryStage.setMinHeight(720);
