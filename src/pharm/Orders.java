@@ -52,6 +52,11 @@ public class Orders {
             ResultSet rs;
             pstmt.setInt(1, search);
             rs = pstmt.executeQuery();
+            if(rs.isClosed()){
+                td=null;
+                printOut(td);
+            }
+            else
             while (rs.next()) {
                 td.setSl(tabData.slTrack++);
                 td.setItemID(rs.getInt("item"));
@@ -72,7 +77,7 @@ public class Orders {
     }
 
     private void printOut(tabData td) {
-        if (td.getName() == null) {
+        if (td == null) {
             tabData.slTrack--;
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
@@ -92,7 +97,7 @@ public class Orders {
             taxField.setText(tmp + "");
             tmp = tmp + td.getAmt() + Double.parseDouble(amtField.getText());
             amtField.setText(tmp + "");
-            name.setText(td.getName());
+            name.setText(td.getCustName());
             phone.setText(td.getPhone());
             age.setText(td.getAge()+"");
             wt.setText(td.getWt()+"");
