@@ -11,11 +11,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("stocks.fxml"));
-        primaryStage.setTitle("Billing");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setMinHeight(720);
-        primaryStage.setMinWidth(1024);
+        Parent root = FXMLLoader.load(getClass().getResource("frontPage.fxml"));
+        primaryStage.setTitle("Main Menu");
+        primaryStage.setScene(new Scene(root,800,600));
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
+        primaryStage.setMaxHeight(primaryStage.getMinHeight());
+        primaryStage.setMaxWidth(primaryStage.getMinWidth());
         primaryStage.show();
     }
 

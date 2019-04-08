@@ -3,15 +3,17 @@ package pharm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
+import java.io.IOException;
 import java.sql.*;
 
 public class Orders {
@@ -25,15 +27,18 @@ public class Orders {
     TableView colOrd;
     @FXML
     VBox box;
+    @FXML
+    Button backBtn;
     private Connection conn = null;
     private ObservableList<tabData> list = FXCollections.observableArrayList();
     public void initialize() {
         if (conn == null)
             connect();
+        allReset();
     }
 
     private void connect() {
-        String url = "jdbc:sqlite:C:/sqlite/test.db";
+        String url = "jdbc:sqlite:res/test.db";
         try {
             conn = DriverManager.getConnection(url);
             System.out.println("Connected to DB");
@@ -47,7 +52,7 @@ public class Orders {
         allReset();
         int search = Integer.parseInt(srchBox.getText());
         String sql = "SELECT * FROM orders o,stocks s WHERE OID=? AND o.item=s.ID";
-        tabData td = new tabData();
+        tabData td;
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             ResultSet rs;
             pstmt.setInt(1, search);
@@ -58,6 +63,7 @@ public class Orders {
             }
             else
             while (rs.next()) {
+                td=new tabData();
                 td.setSl(tabData.slTrack++);
                 td.setItemID(rs.getInt("item"));
                 td.setName(rs.getString("name"));
@@ -109,5 +115,20 @@ public class Orders {
         colOrd.getItems().clear();
         taxField.setText("0");
         amtField.setText("0");
+        tabData.slTrack=1;
+    }
+    @FXML
+    private void backMain() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("frontPage.fxml"));
+        Stage stage=new Stage();
+        Stage tmp=(Stage) backBtn.getScene().getWindow();
+        stage.setTitle("Main Menu");
+        stage.setScene(new Scene(root,800,800));
+        stage.setMinHeight(600);
+        stage.setMinWidth(800);
+        stage.setMaxHeight(stage.getMinHeight());
+        stage.setMaxWidth(stage.getMinWidth());
+        tmp.close();
+        stage.show();
     }
 }

@@ -6,10 +6,15 @@ package pharm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class Billing {
@@ -25,6 +30,8 @@ public class Billing {
     private ToggleGroup Toggle1;
     @FXML
     private RadioButton genM, genF, genO;
+    @FXML
+    Button backBtn;
     private Connection conn = null;
     private ObservableList<tabData> list = FXCollections.observableArrayList();
     private static int ordTrack = 0;
@@ -34,7 +41,7 @@ public class Billing {
         if (conn == null)
             connect();
         try {
-            String sql = "SELECT max(ID) FROM orders";
+            String sql = "SELECT max(OID) FROM orders";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs= pstmt.executeQuery();
             ordTrack = rs.getInt(1) + 1;
@@ -47,10 +54,11 @@ public class Billing {
         colAmt.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Amt"));
         colPrice.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Price"));
         colName.setCellValueFactory(new PropertyValueFactory<tabData, String>("Name"));
+        allReset();
     }
 
     private void connect() {
-        String url = "jdbc:sqlite:C:/sqlite/test.db";
+        String url = "jdbc:sqlite:res/test.db";
         try {
             conn = DriverManager.getConnection(url);
             System.out.println("Connected to DB");
@@ -102,7 +110,6 @@ public class Billing {
         } else {
             td.setQty(q);
             td.setAmt(td.getQty() * td.getPrice());
-            td.setSl(tabData.slTrack);
             list.add(td);
             colOrd.setItems(list);
             colOrd.setVisible(true);
@@ -118,13 +125,13 @@ public class Billing {
         String sql2 = "UPDATE stocks SET qty=qty-? WHERE ID=?";
         PreparedStatement pstmt;
         try {
-            for (int i = 1; i <= tabData.slTrack; i++) {
+            for (int i = 1; i < tabData.slTrack; i++) {
                 pstmt = conn.prepareStatement(sql1);
                 pstmt.setInt(1, ordTrack);
                 pstmt.setString(2, name.getText());
                 pstmt.setInt(3, Integer.parseInt(age.getText()));
                 pstmt.setString(4, phone.getText());
-                pstmt.setInt(5, Integer.parseInt(wt.getText()));
+                pstmt.setDouble(5, Double.parseDouble(wt.getText()));
                 if (Toggle1.getSelectedToggle() == genM)
                     pstmt.setString(6, "Male");
                 else if (Toggle1.getSelectedToggle() == genF)
@@ -163,7 +170,22 @@ public class Billing {
         taxField.setText("0");
         amtField.setText("0");
         RadioButton tmp = (RadioButton) Toggle1.getSelectedToggle();
-        tmp.setSelected(false);
+        if(tmp!=null)
+            tmp.setSelected(false);
         tabData.slTrack = 1;
+    }
+    @FXML
+    private void backMain() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("frontPage.fxml"));
+        Stage stage=new Stage();
+        Stage tmp=(Stage) backBtn.getScene().getWindow();
+        stage.setTitle("Main Menu");
+        stage.setScene(new Scene(root,800,800));
+        stage.setMinHeight(600);
+        stage.setMinWidth(800);
+        stage.setMaxHeight(stage.getMinHeight());
+        stage.setMaxWidth(stage.getMinWidth());
+        tmp.close();
+        stage.show();
     }
 }
