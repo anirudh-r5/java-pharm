@@ -8,13 +8,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="689.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pharm.Stocks">
+<AnchorPane prefHeight="733.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pharm.Stocks">
     <children>
         <HBox alignment="CENTER" layoutY="28.0" prefHeight="72.0" prefWidth="1040.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
@@ -41,6 +42,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="OR" />
             <TextField fx:id="srchPrice" promptText="Price" />
                 <Button mnemonicParsing="false" onAction="#searchStk" text="Search" />
+            <Button fx:id="allBtn" mnemonicParsing="false" onAction="#showAll" text="Show All" />
             </children>
         </HBox>
         <Separator layoutX="426.0" layoutY="201.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -62,7 +64,7 @@
                </VBox.margin>
             </TableView>
             <Separator prefWidth="200.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <HBox prefHeight="115.0" prefWidth="1059.0" spacing="10.0">
                <children>   
                   <VBox prefHeight="100.0" prefWidth="143.0" spacing="10.0">
                      <children>
@@ -120,5 +122,20 @@
             <Insets top="10.0" />
          </padding>
         </VBox>
+      <HBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="1040.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="1040.0" HBox.hgrow="ALWAYS">
+              <items>
+                <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backMain" text="Back to Main Menu" />
+              </items>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </ToolBar>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>
