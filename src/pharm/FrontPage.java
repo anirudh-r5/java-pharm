@@ -1,5 +1,6 @@
 package pharm;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class FrontPage {
+    public Button logOut;
     @FXML
     Button stck,ord,bill;
     @FXML
@@ -47,5 +49,19 @@ public class FrontPage {
         stage.setMinWidth(1024);
         tmp.close();
         stage.show();
+    }
+
+    public void logoutbtn (ActionEvent actionEvent)throws IOException {
+        Stage primaryStage=new Stage();
+        Stage tmp=(Stage)  logOut.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        primaryStage.setTitle("Main Menu");
+        primaryStage.setScene(new Scene(root,800,600));
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
+        primaryStage.setMaxHeight(primaryStage.getMinHeight());
+        primaryStage.setMaxWidth(primaryStage.getMinWidth());
+        tmp.close();
+        primaryStage.show();
     }
 }

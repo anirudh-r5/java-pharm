@@ -36,4 +36,13 @@
          </Button>
       </children>
    </HBox>
+   <HBox alignment="CENTER" prefHeight="188.0" prefWidth="892.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <children>
+         <Button fx:id="logOut" alignment="CENTER" mnemonicParsing="false" onAction="#logoutbtn" prefHeight="73.0" prefWidth="111.0" text="Logout">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+      </children>
+   </HBox>
 </AnchorPane>
