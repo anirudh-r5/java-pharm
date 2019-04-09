@@ -4,11 +4,17 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 
 
@@ -27,7 +33,7 @@ public class Stocks {
     @FXML
     Text itemLabel;
     @FXML
-    private Button modAdd;
+    private Button modAdd,backBtn;
     private Connection conn = null;
     private ObservableList<tabData> list = FXCollections.observableArrayList();
 
@@ -155,8 +161,8 @@ public class Stocks {
                 td = null;
                 printOut(td);
             } else {
-                td = new tabData();
                 while (rs.next()) {
+                    td=new tabData();
                     td.setSl(tabData.slTrack++);
                     td.setItemID(rs.getInt("ID"));
                     td.setName(rs.getString("name"));
@@ -193,8 +199,13 @@ public class Stocks {
         modQty.setVisible(false);
         modAdd.setVisible(false);
         itemLabel.setVisible(false);
+        modID.setText(null);
+        modName.setText(null);
+        modPrice.setText(null);
+        modQty.setText(null);
         RadioButton tmp = (RadioButton) Toggle1.getSelectedToggle();
-        tmp.setSelected(false);
+        if(tmp!=null)
+            tmp.setSelected(false);
     }
 
     @FXML
@@ -244,6 +255,11 @@ public class Stocks {
                     pstmt.setInt(3, Integer.parseInt(modPrice.getText()));
                     pstmt.setInt(4, Integer.parseInt(modQty.getText()));
                     pstmt.executeUpdate();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Item Added!");
+                    alert.show();
                     resetAll();
                 } catch (SQLException e) {
                     System.out.println(e.getMessage());
@@ -264,6 +280,11 @@ public class Stocks {
                     pstmt.setInt(1,Integer.parseInt(modQty.getText()));
                     pstmt.setInt(2, Integer.parseInt(modID.getText()));
                     pstmt.executeUpdate();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Item Added!");
+                    alert.show();
                     resetAll();
                 }catch(SQLException e){System.out.println(e.getMessage());}
             }
@@ -281,9 +302,48 @@ public class Stocks {
                 try (PreparedStatement pstmt = conn.prepareStatement(url)) {
                     pstmt.setInt(1, Integer.parseInt(modID.getText()));
                     pstmt.executeUpdate();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Item Deleted!");
+                    alert.show();
                     resetAll();
                 }catch(SQLException e){System.out.println(e.getMessage());}
             }
         }
+    }
+    @FXML
+    private void showAll() {
+        String url="SELECT * FROM stocks";
+        resetAll();
+        try(PreparedStatement pstmt=conn.prepareStatement(url)){
+            ResultSet rs=pstmt.executeQuery();
+            tabData td;
+            while (rs.next()) {
+                td=new tabData();
+                td.setSl(tabData.slTrack++);
+                td.setItemID(rs.getInt("ID"));
+                td.setName(rs.getString("name"));
+                td.setPrice(rs.getInt("price"));
+                td.setQty(rs.getInt("qty"));
+                printOut(td);
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    @FXML
+    private void backMain() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("frontPage.fxml"));
+        Stage stage=new Stage();
+        Stage tmp=(Stage) backBtn.getScene().getWindow();
+        stage.setTitle("Main Menu");
+        stage.setScene(new Scene(root,800,800));
+        stage.setMinHeight(600);
+        stage.setMinWidth(800);
+        stage.setMaxHeight(stage.getMinHeight());
+        stage.setMaxWidth(stage.getMinWidth());
+        tmp.close();
+        stage.show();
     }
 }

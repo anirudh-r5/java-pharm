@@ -7,6 +7,12 @@ public class tabData {
     private double wt;
     private String name, custName, phone, gen = null;
 
+//    tabData(tabData d){
+//        this.setSl(d.getSl());
+//        this.setPrice(d.getPrice());
+//        this.setQty(d.getQty());
+//    }
+
     public String getCustName() {
         return custName;
     }

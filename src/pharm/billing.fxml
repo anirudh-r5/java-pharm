@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -211,7 +212,7 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
                          <Button mnemonicParsing="false" onAction="#allSubmit" text="Submit" />
-                        <Button mnemonicParsing="false" text="Reset" onAction="#allReset"/>
+                        <Button mnemonicParsing="false" onAction="#allReset" text="Reset" />
                      </children>
                   </HBox>
                     </children>
@@ -230,6 +231,21 @@
                         <Font name="System Bold" size="25.0" />
                     </font>
                 </Text>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="1040.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="1040.0" HBox.hgrow="ALWAYS">
+               <items>
+                  <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backMain" text="Back to Main Menu" />
+               </items>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </ToolBar>
          </children>
       </HBox>
     </children>

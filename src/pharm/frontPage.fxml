@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pharm.FrontPage"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="585.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pharm.FrontPage">
+    <HBox alignment="CENTER" layoutX="200.0" layoutY="14.0" prefHeight="71.0" prefWidth="892.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <children>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MAIN MENU">
+            <font>
+               <Font name="System Bold" size="25.0" />
+            </font>
+         </Text>
+      </children></HBox>
+   <Separator layoutX="-8.0" layoutY="84.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+   <HBox alignment="CENTER" layoutX="346.0" layoutY="193.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <children>
+         <Button fx:id="stck" minHeight="70.0" minWidth="120.0" mnemonicParsing="false" onAction="#onStck" prefHeight="70.0" prefWidth="120.0" text="Stocks">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Button>
+         <Button fx:id="bill" minHeight="70.0" minWidth="120.0" mnemonicParsing="false" onAction="#onBill" prefHeight="47.0" prefWidth="52.0" text="Billing">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Button>
+         <Button fx:id="ord" minHeight="70.0" minWidth="120.0" mnemonicParsing="false" onAction="#onOrd" prefHeight="70.0" prefWidth="120.0" text="Orders">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Button>
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="188.0" prefWidth="892.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <children>
+         <Button fx:id="logOut" alignment="CENTER" mnemonicParsing="false" onAction="#logoutbtn" prefHeight="73.0" prefWidth="111.0" text="Logout">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+      </children>
+   </HBox>
 </AnchorPane>
