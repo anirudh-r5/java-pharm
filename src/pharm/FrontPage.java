@@ -51,9 +51,9 @@ public class FrontPage {
         stage.show();
     }
 
-    public void logoutbtn (ActionEvent actionEvent)throws IOException {
+    public void logoutbtn ()throws IOException {
         Stage primaryStage=new Stage();
-        Stage tmp=(Stage)  logOut.getScene().getWindow();
+       Stage tmp=(Stage)  logOut.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(new Scene(root,800,600));

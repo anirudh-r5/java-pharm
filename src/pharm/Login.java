@@ -34,7 +34,7 @@ public class Login {
         }
     }
 
-    public void loGin(ActionEvent actionEvent) {
+    public void loGin() {
         String sql1="SELECT * from login WHERE id=? and password=?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql1)) {
             ResultSet rs;

@@ -101,6 +101,7 @@ public class Stocks {
         colQty.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Qty"));
         colPrice.setCellValueFactory(new PropertyValueFactory<tabData, Integer>("Price"));
         colName.setCellValueFactory(new PropertyValueFactory<tabData, String>("Name"));
+        colOrd.setItems(list);
     }
 
     private void connect() {
@@ -186,7 +187,7 @@ public class Stocks {
             alert.show();
         } else {
             list.add(td);
-            colOrd.setItems(list);
+
         }
     }
 
